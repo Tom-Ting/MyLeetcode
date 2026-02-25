@@ -1,48 +1,59 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-
 public class T148_M_ListNode {
     public ListNode sortList(ListNode head) {
-        List<ListNode> NodeList = new ArrayList<>();
-        ListNode point = head;
-        while (point != null){
-            InsertAndSort(NodeList, point);
-            point = point.next;
-        }
-
-        ListNode preHead = new ListNode(-1);
-        point = preHead;
-
-        for (int i = 0; i < NodeList.size(); i++) {
-            point.next = NodeList.get(i);
-            point = point.next;
-        }
-        return preHead.next;
+        return sortList(head, null);
     }
 
-    public void InsertAndSort(List<ListNode> NodeList, ListNode node){
-        if (NodeList.isEmpty()){
-            NodeList.add(node);
-            return;
+    public ListNode sortList(ListNode head, ListNode tail){
+        if (head == null){
+            return null;
         }
-        int left = 0;
-        int right = NodeList.size()-1;
+        if (head.next == tail){
+            // 这是神来之笔，为什么？
+            head.next = null;
+            return head;
+        }
 
-        while(left <= right){
-            int mid = (left + right)/2;
-            if (NodeList.get(mid).val == node.val){
-                NodeList.add(mid, node);
-                return;
-            }else if (NodeList.get(mid).val < node.val){
-                left = mid + 1;
-            }else {
-                right = mid - 1;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != tail){
+            fast = fast.next;
+            slow = slow.next;
+            if (fast != tail){
+                fast = fast.next;
             }
         }
-        NodeList.add(left, node);
+
+        ListNode midNode = slow;
+        ListNode List1 = sortList(head, midNode);
+        ListNode List2 = sortList(midNode, tail);
+
+        return mergeList(List1, List2);
+    }
+
+    public ListNode mergeList(ListNode List1, ListNode List2){
+        ListNode prePoint = new ListNode(-1);
+        ListNode head = prePoint;
+        ListNode point1 = List1;
+        ListNode point2 = List2;
+
+        while (point1 != null && point2 != null){
+            if (point1.val < point2.val){
+                prePoint.next = point1;
+                point1 = point1.next;
+            }else {
+                prePoint.next = point2;
+                point2 = point2.next;
+            }
+            prePoint = prePoint.next;
+        }
+        if (point1 == null){
+            prePoint.next = point2;
+        }else {
+            prePoint.next = point1;
+        }
+        return head.next;
     }
 
     @Test
