@@ -12,11 +12,29 @@ public class T20_E {
                 continue;
             }
             switch (c){
-
+                case '(':
+                case '[':
+                case '{':
+                    stack.push(c);
+                    break;
+                case ')':
+                    if(stack.pop() != '('){
+                        return false;
+                    }
+                    break;
+                case ']':
+                    if(stack.pop() != '['){
+                        return false;
+                    }
+                    break;
+                case '}':
+                    if(stack.pop() != '{'){
+                        return false;
+                    }
+                    break;
             }
-
         }
-        return true;
+        return stack.isEmpty();
     }
 
     @Test
