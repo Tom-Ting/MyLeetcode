@@ -1,30 +1,38 @@
 import org.junit.Test;
 
 public class T322_M {
+
+    int[] minCoinNum;
+
     public int coinChange(int[] coins, int amount) {
         if (amount == 0){
             return 0;
         }
-        int[] dp = new int[amount+1];
-        dp[0] = 0;
+        minCoinNum = new int[amount+1];
+        minCoinNum[0] = 0;
         for (int i = 1; i <= amount; i++) {
-            int Min = i+1;
-            for (int j = 0; j < coins.length; j++) {
-                if (i - coins[j] > 0){
-                    if (dp[i-coins[j]] == -1){
-                        continue;
+            genMinCoinNum(coins, i);
+        }
+        if (minCoinNum[amount] == 0){
+            return -1;
+        }
+        return minCoinNum[amount];
+    }
+
+    public void genMinCoinNum(int[] coins, int amount){
+        for (int coin : coins) {
+            if (amount == coin){
+                minCoinNum[amount] = 1;
+            }else if (amount > coin){
+                if (minCoinNum[amount-coin] > 0){
+                    if (minCoinNum[amount] == 0){
+                        minCoinNum[amount] = minCoinNum[amount-coin]+1;
+                    }else {
+                        minCoinNum[amount] = Math.min(minCoinNum[amount], minCoinNum[amount-coin]+1);
                     }
-                    Min = Math.min(Min, dp[i-coins[j]] + 1);
-                }else if(i - coins[j] == 0){
-                    dp[i] = 1;
                 }
             }
-            if (Min > i){
-                return -1;
-            }
-
         }
-        return dp[amount];
     }
 
     @Test
