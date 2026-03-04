@@ -59,8 +59,8 @@ public class QuickSort {
         int r = right;
 
         while (l <= r){
-            while (l <= r && arr[l] < pivot) l++;
             while (l <= r && arr[r] > pivot) r--;
+            while (l <= r && arr[l] < pivot) l++;
             if (l <= r){
                 int temp = arr[l];
                 arr[l] = arr[r];
@@ -69,11 +69,11 @@ public class QuickSort {
                 r--;
             }
         }
-        arr[left] = arr[l];
-        arr[l] = pivot;
+        arr[left] = arr[r];
+        arr[r] = pivot;
 
-        quickSort(arr, left, l-1);
-        quickSort(arr, l+1, right);
+        quickSort(arr, left, r-1);
+        quickSort(arr, r+1, right);
     }
 
     public static void quickSort2(int[] arr, int left, int right) {
@@ -115,20 +115,20 @@ public class QuickSort {
 
     @Test
     public void Test(){
-//        int[] array1 = {3, 6, 8, 10, 1, 2, 1};
-//        quickSort1(array1, 0, array1.length - 1);
-//        System.out.println(Arrays.toString(array1));
-//
-//        int[] array2 = {43, 67, 21, 89, 12, 54, 33, 76, 98, 5, 62, 19, 87, 41, 28, 73, 55, 90, 14, 37, 82, 9, 64, 31, 78, 46, 23, 59, 16, 71};
-//        quickSort1(array2, 0, array2.length - 1);
-//        System.out.println(Arrays.toString(array2));
+        int[] array1 = {3, 6, 8, 10, 1, 2, 1};
+        quickSort(array1, 0, array1.length - 1);
+        System.out.println(Arrays.toString(array1));
 
-//        int[] array3 = {78, 67, 21, 89, 12, 54, 33, 76, 98, 5, 62, 19, -1};
-//        quickSort1(array3, 0, array3.length - 1);
-//        System.out.println(Arrays.toString(array3));
+        int[] array2 = {43, 67, 21, 89, 12, 54, 33, 76, 98, 5, 62, 19, 87, 41, 28, 73, 55, 90, 14, 37, 82, 9, 64, 31, 78, 46, 23, 59, 16, 71};
+        quickSort(array2, 0, array2.length - 1);
+        System.out.println(Arrays.toString(array2));
+
+        int[] array3 = {78, 67, 21, 89, 12, 54, 33, 76, 98, 5, 62, 19, -1};
+        quickSort(array3, 0, array3.length - 1);
+        System.out.println(Arrays.toString(array3));
 
         int[] array4 = {78, 67, 21, 89, 12, 54, 33, 76, 98, 5, 62, 19, 100};
-        quickSort1(array4, 0, array4.length - 1);
+        quickSort(array4, 0, array4.length - 1);
         System.out.println(Arrays.toString(array4));
     }
 }

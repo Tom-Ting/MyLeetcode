@@ -10,31 +10,31 @@ public class T215_Heap {
         return KthLargest;
     }
 
-    public int quicksort(int[] nums, int l, int r, int k){
-        // k位于l和r之间，切l==r，说明k找到了
-        if (l == r){
-            return l;
-        }
-        int lPoint = l+1;
-        int rPoint = r;
-        while (lPoint < rPoint){
-            while (nums[lPoint] < nums[l]){
-                lPoint++;
-            }
-            while (nums[rPoint] >= nums[l]){
-                rPoint--;
-            }
-            if (lPoint < rPoint){
-                int temp = nums[lPoint];
-                nums[lPoint] = nums[rPoint];
-                nums[rPoint] = temp;
+    public int quicksort(int[] nums, int left, int right, int k){
+        int l = left+1;
+        int r = right;
+        int pivot = nums[left];
+        while (l <= r){
+            while (l <= r && nums[r] < pivot) r--;
+            while (l <= r && nums[l] > pivot) l++;
+            if (l <= r){
+                int temp = nums[l];
+                nums[l] = nums[r];
+                nums[r] = temp;
+                l++;
+                r--;
             }
         }
-
-        if (lPoint <= k-1){
-            return quicksort(nums, lPoint+1, r, k);
+        if (r == k-1){
+            nums[left] = nums[r];
+            nums[r] = pivot;
+            return nums[r];
+        }else if (r > k-1){
+            nums[left] = nums[r];
+            nums[r] = pivot;
+            return quicksort(nums,left, r-1, k);
         }else {
-            return quicksort(nums, l, lPoint-1, k);
+            return quicksort(nums,r+1, right, k);
         }
     }
 
