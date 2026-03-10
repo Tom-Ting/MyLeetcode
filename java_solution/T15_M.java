@@ -4,7 +4,7 @@ import java.util.*;
 
 public class T15_M {
     /**
-     * 官方题解：第二指针和第三指针从两边缩圈，优化掉一层循环
+     * 我的参考题解：第二指针和第三指针从两边缩圈，优化掉一层循环。代码过于丑陋，布丁太多。
      * @param nums 源数组
      * @return 和为目标值的去重结果集合
      * 时间复杂度O(n^2)
@@ -18,15 +18,13 @@ public class T15_M {
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<>();
         int lastI = nums[0]-1;
-        int lastJ;
-        int lastK;
         for (int i = 0; i < Length-2; i++) {
             if (nums[i] == lastI){
                 continue;
             }
             lastI = nums[i];
-            lastJ = nums[i+1];
-            lastK = nums[Length-1];
+            int lastJ = nums[i+1];
+            int lastK = nums[Length-1];
             int j = i+1;
             int k = Length-1;
             while (j < k){
@@ -40,17 +38,26 @@ public class T15_M {
                     while (j < Length && nums[j] == lastJ){
                         j++;
                     }
+                    if (j == Length){
+                        continue;
+                    }
                     lastJ = nums[j];
                 }else if (lastI+lastJ+lastK > 0){
                     k--;
-                    while (k > 0 && nums[k] == lastK){
+                    while (k >= 0 && nums[k] == lastK){
                         k--;
+                    }
+                    if (k < 0){
+                        continue;
                     }
                     lastK = nums[k];
                 }else {
                     j++;
                     while (j < Length && nums[j] == lastJ){
                         j++;
+                    }
+                    if (j == Length){
+                        continue;
                     }
                     lastJ = nums[j];
                 }

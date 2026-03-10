@@ -11,10 +11,12 @@ public class T5_M {
         int MaxLenIndex = 0;
         for (int i = 1; i < s.length(); i++) {
             int SLoc = i-dp[i-1]-1;
-            if (SLoc >= 0 && s.charAt(i) == s.charAt(SLoc) && SLoc < i){
-                dp[i] = dp[i-1]+2;
-            }else if (i > 1 && s.charAt(i) == s.charAt(i-2)){
-                dp[i] = 3;
+            int flag = 0;
+            if (i > 1 && s.charAt(i) == s.charAt(i-1) && s.charAt(i-1) == s.charAt(i-2)){
+                flag++;
+            }
+            if (SLoc+flag >= 0 && s.charAt(i) == s.charAt(SLoc+flag) && SLoc+flag < i){
+                dp[i] = dp[i-1]+2-flag;
             }else if (s.charAt(i) == s.charAt(i-1)){
                 dp[i] = 2;
             }else {
@@ -32,5 +34,8 @@ public class T5_M {
     public void Test(){
         System.out.println(longestPalindrome("babad"));
         System.out.println(longestPalindrome("cbbd"));
+        System.out.println(longestPalindrome("ccc"));
+        System.out.println(longestPalindrome("bcccb"));
+        System.out.println(longestPalindrome("abbcccbbbcaaccbababcbcabca"));
     }
 }
