@@ -4,6 +4,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class T128_M {
+    /**
+     * 参考官方题解：在看完官方解答后自主实现。先遍历数组，放入哈希集合中，便于去重和查找。再二次遍历数组，若其前一位值存在，则代表其不是序列起点，跳过。若其前一位值不存在，则向后查找，直到查不到。
+     * @param nums 源数组
+     * @return 连续的最长序列（不要求元素在源数组中位置连续）
+     * 时间复杂度：O(n)
+     *      两次遍历数组都是O(n)
+     *      哈希集合中查找元素为O(1)
+     * 空间复杂度：O(n)
+     *      哈希表： O(n)
+     */
     public int longestConsecutive(int[] nums) {
         Set<Integer> set = new HashSet<>();
         for (int num : nums) {
@@ -23,6 +33,20 @@ public class T128_M {
         return maxLength;
     }
 
+    /**
+     * 我的错误思路：先给数组排序，然后遍历寻找连续数组。但因为题目明确要求时间复杂度不超过O(n)，本思路超时，不符合要求。
+     * @param nums 源数组
+     * @return 连续的最长序列
+     * 时间复杂度：O(n log n)
+     *      数组排序：O(n log n)
+     *      数组遍历：O(n)
+     * 空间复杂度：O(1)
+     *      不需要额外空间
+     */
+    public int longestConsecutive2(int[] nums) {
+        // 略
+        return -1;
+    }
     @Test
     public void Test(){
         System.out.println(longestConsecutive(new int[]{100,4,200,1,3,2}));

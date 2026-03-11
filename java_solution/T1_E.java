@@ -4,6 +4,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class T1_E {
+    /**
+     * 我的题解：暴力双层嵌套解法
+     * @param nums
+     * @param target
+     * @return
+     * 时间复杂度：O(n²)
+     * 空间复杂度：O(1)
+     */
     public int[] twoSum1(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i+1; j < nums.length; j++) {
@@ -14,6 +22,15 @@ public class T1_E {
         }
         return new int[]{-1, -1};
     }
+
+    /**
+     * 官方题解：哈希表解法，优化第二层循环
+     * @param nums
+     * @param target
+     * @return
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     */
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> Nums = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {

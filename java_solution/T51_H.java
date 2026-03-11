@@ -1,6 +1,15 @@
 import java.util.*;
 
 public class T51_H {
+    /**
+     * 我的参考题解：参考官方基于集合的回溯算法
+     * @param n 皇后数量和棋盘边长
+     * @return 摆放方案
+     * 时间复杂度：O(N!)
+     *      搜索空间：n! 个可能的放置（每行一个皇后，每列不重复）
+     * 空间复杂度：O(N)。
+     *      空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过 N，数组的长度为 N，每个集合的元素个数都不会超过 N。
+     */
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> solutions = new ArrayList<>();
         Set<Integer> columns = new HashSet<>();

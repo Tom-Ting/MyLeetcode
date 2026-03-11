@@ -1,19 +1,26 @@
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Objects;
 
-public class T79_E_Search {
+public class T79_M {
+    /**
+     * 我的参考题解：参考官方思路。
+     * @param board 尺寸为m × n
+     * @param word 长度为L
+     * @return 是否存在目标单词
+     * 时间复杂度：O(m × n × 3ᴸ)
+     *      起点数量：m × n
+     *      除首节点，每个节点有最多3个子节点，树深度最多L。故时间开销为3ᴸ
+     * 空间复杂度：O(m × n + L)
+     *      visited数组：O(m × n)
+     *      递归调用栈：O(L)。最大递归深度为L
+     *      字符串拼接和裁剪：O(L)
+     */
     public boolean exist(char[][] board, String word) {
-        if (Objects.equals(word, "")){
+        if (word == null || word.isEmpty()){
             return false;
         }
         boolean[][] visited = new boolean[board.length][board[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                visited[i][j] = false;
-            }
-        }
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (existHeadAt(board, visited, i, j, word)){
@@ -85,7 +92,3 @@ public class T79_E_Search {
         }, "AAB"));
     }
 }
-/*
-    本题难点：标记位置是否访问的数组如何不被乱改？那就是在改完之后进行判断，判断完再改回来。
-    回溯法的一大核心就是不能重复回溯
- */

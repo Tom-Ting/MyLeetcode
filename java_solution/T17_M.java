@@ -6,6 +6,17 @@ import java.util.HashMap;
 import java.util.List;
 
 public class T17_M {
+    /**
+     * 我的思路：外层循环数字，然后将数字对应的字母逐个分别加到已有的字符串中
+     * @param digits 源数字。其中，有m个数对应3个字母，n个数对应4个字母。
+     * @return 对应的全部字符串组合
+     * 时间复杂度：O((m+n)(3^m × 4^n))
+     *      总组合数：O(3^m × 4^n)
+     *      字符串拼接：O(m+n)
+     * 空间复杂度：O((m+n) × 3^m × 4^n)
+     *      总组合数：O(3^m × 4^n)
+     *      每个组合中字符串长度：(m+n)
+     */
     public List<String> letterCombinations(String digits) {
         HashMap<String, List<String>> Num2String = new HashMap<>();
         Num2String.put("2", Arrays.asList("a","b","c"));
