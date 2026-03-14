@@ -4,6 +4,16 @@ import java.util.Arrays;
 import java.util.Stack;
 
 public class T739_M {
+    /**
+     * 我的题解
+     * @param temperatures 源数组
+     * @return 温度更高的最早天数数组
+     * 时间复杂度：O(n)
+     *      遍历一次数组，复杂度为 O(n)
+     *      虽然内部有 while 循环，但每个元素最多只被 push 和 pop 一次。总操作数为2n，因此复杂度为 O(n)
+     * 空间复杂度：O(n)
+     *      栈最坏情况存储所有元素
+     */
     public int[] dailyTemperatures(int[] temperatures) {
         Stack<Integer> stack = new Stack<>();
         int[] answer = new int[temperatures.length];
