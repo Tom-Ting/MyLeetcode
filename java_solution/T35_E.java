@@ -38,6 +38,7 @@ public class T35_E {
         int n = nums.length;
         int left = 0, right = n - 1, ans = n;
         while (left <= right) {
+            // 等价于int mid = (right + left) >> 1，可能存在最大值溢出风险
             int mid = ((right - left) >> 1) + left;
             if (target <= nums[mid]) {
                 ans = mid;
