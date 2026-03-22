@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class T141_E_LL {
+public class T141_E {
     public boolean hasCycle(ListNode head) {
         if (head == null){
             return false;

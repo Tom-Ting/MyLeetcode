@@ -1,6 +1,9 @@
 import java.util.Stack;
 
-public class T206_E_LL {
+public class T206_E {
+    /**
+     * 我的题解：栈
+     */
     public ListNode reverseList(ListNode head) {
         if (head == null){
             return head;
@@ -17,6 +20,21 @@ public class T206_E_LL {
             point = point.next;
         }
         point.next = null;
+        return newHead;
+    }
+
+    /**
+     * 我的参考解法：迭代
+     */
+    public ListNode reverseList2(ListNode head) {
+        ListNode newHead = null;
+        ListNode oldHead = head;
+        while (oldHead != null){
+            ListNode oldNext = oldHead.next;
+            oldHead.next = newHead;
+            newHead = oldHead;
+            oldHead = oldNext;
+        }
         return newHead;
     }
 }
