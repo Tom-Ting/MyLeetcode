@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-public class T2_M_LL {
+public class T2_M {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
