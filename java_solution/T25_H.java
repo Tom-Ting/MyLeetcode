@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import java.util.Stack;
 
-public class T25_H_ListNode {
+public class T25_H {
     public ListNode reverseKGroup(ListNode head, int k) {
         // 零校验
         if (head == null || head.next == null){

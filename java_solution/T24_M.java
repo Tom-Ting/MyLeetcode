@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import java.util.Stack;
 
-public class T24_M_ListNode {
+public class T24_M {
     public ListNode swapPairs(ListNode head) {
         if (head == null || head.next == null){
             return head;

@@ -2,7 +2,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class T23_H_ListNode {
+public class T23_H {
     public ListNode mergeKLists(ListNode[] lists) {
         int L = lists.length;
         if (L == 0){
